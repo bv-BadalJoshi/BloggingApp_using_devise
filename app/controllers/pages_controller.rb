@@ -7,9 +7,9 @@ class PagesController < ApplicationController
 	def show
 		@page = User.find(params[:id])
 	end
-	
+
 	private
-	
+
 	def if_logged_in
 		redirect_to page_path(current_user) if user_signed_in?
 	end

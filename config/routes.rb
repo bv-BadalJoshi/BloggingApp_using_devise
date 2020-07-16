@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-	devise_for :admin_users, ActiveAdmin::Devise.config
+	dev_config = ActiveAdmin::Devise.config
+	dev_config[:controllers][:omniauth_callbacks] = "admin_users/omniauth_callbacks" 
+	devise_for :admin_users,dev_config
 	ActiveAdmin.routes(self)
-	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+	devise_for :users 
 	resources :articles
 	root "pages#home"
 	resources :pages, only: [:show]	

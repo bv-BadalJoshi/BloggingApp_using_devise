@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
-	protected
+	private
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
@@ -13,8 +13,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-  		root_path
+		if resource.class == User
+			root_path
+		elsif resource.class == AdminUser
+			admin_root_path
+		else
+		end
 	end
-
-
 end

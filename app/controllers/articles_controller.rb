@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 	before_action :authenticate_user!, only: [:update, :edit, :destroy]
 	before_action :fetch_article, only: [:show, :edit, :update, :destroy]
+	
 	def show
 	end
 
@@ -49,5 +50,4 @@ class ArticlesController < ApplicationController
 	def filter_param
 		return params.require(:article).permit(:title, :description)
 	end
-
 end
